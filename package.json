@@ -1,0 +1,37 @@
+{
+  "name": "request-options",
+  "version": "1.0.0",
+  "description": "Default options object generator for the popular NodeJS package Request",
+  "keywords": [
+    "request",
+    "options",
+    "default",
+    "option",
+    "defaults"
+  ],
+  "author": {
+    "name": "Nigel Horton",
+    "email": "webdevelopment@clocked0ne.co.uk",
+    "url": "http://www.clocked0ne.co.uk/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/clocked0ne/request-options.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./index",
+  "devDependencies": {
+    "mocha": "3.x.x"
+  },
+  "engines": {
+    "node": ">= 6.0.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+  }
+}
