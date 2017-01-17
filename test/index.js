@@ -48,12 +48,11 @@ describe('request-options', () => {
             }
         );
     });
-    it('returns extended JSON Request options with overwritten defaults when called with additional `options` JSON and `defaults` JSON', () => {
+    it('returns extended JSON Request options with overwritten defaults when called with additional properties in `options` JSON', () => {
         assert.deepStrictEqual(
             requestOptions({
                 method: 'PUT',
                 url: '127.0.0.1:8080/api/search',
-            }, {
                 timeout: 20000
             }),
             {
@@ -65,44 +64,10 @@ describe('request-options', () => {
             }
         );
     });
-    it('returns JSON Request options with overwritten defaults when called with only `defaults` JSON', () => {
+    it('returns JSON Request options with overwritten defaults when provided a single default property in `options` JSON', () => {
         assert.deepStrictEqual(
-            requestOptions({}, {
+            requestOptions({
                 timeout: 20000
-            }),
-            {
-                json: true,
-                gzip: true,
-                timeout: 20000
-            }
-        );
-        assert.deepStrictEqual(
-            requestOptions(undefined, {
-                timeout: 20000
-            }),
-            {
-                json: true,
-                gzip: true,
-                timeout: 20000
-            }
-        );
-    });
-    it('returns JSON Request options with overwritten defaults ignoring additional properties when called with only `defaults` JSON', () => {
-        assert.deepStrictEqual(
-            requestOptions({}, {
-                timeout: 20000,
-                method: 'POST'
-            }),
-            {
-                json: true,
-                gzip: true,
-                timeout: 20000
-            }
-        );
-        assert.deepStrictEqual(
-            requestOptions(undefined, {
-                timeout: 20000,
-                method: 'POST'
             }),
             {
                 json: true,
@@ -114,9 +79,7 @@ describe('request-options', () => {
     it('throws Error `Additional options must be provided as JSON` if `options` parameter is not an object or undefined', () => {
         assert.throws(
             () => {
-                requestOptions(null, {
-                    timeout: 20000
-                })
+                requestOptions(null)
             },
             /Additional options must be provided as JSON/
         );
@@ -125,14 +88,6 @@ describe('request-options', () => {
                 requestOptions('127.0.0.1:8080/api/search')
             },
             /Additional options must be provided as JSON/
-        );
-    });
-    it('throws Error if `defaults` parameter is not an object or undefined', () => {
-        assert.throws(
-            () => {
-                requestOptions(undefined, null)
-            },
-            /Cannot match against 'undefined' or 'null'/
         );
     });
 });

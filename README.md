@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/clocked0ne/request-options.svg)](https://travis-ci.org/clocked0ne/request-options)
 
 Default options object generator written in ES6 for the popular NodeJS package Request, providing a generic set of request options
-for the [request](https://www.npmjs.com/package/request) package that can be augmented by providing [`options`](#options) or [`defaults`](#defaults) to overwrite.
+for the [request](https://www.npmjs.com/package/request) package that can be augmented or overwritten by providing [`options`](#options).
 
 ## Install
 
@@ -12,10 +12,9 @@ $ npm install -S request-options
 ```
 
 ## Usage
-### requestOptions( [options][, defaults] )
+### requestOptions( [options] )
 ```js
 @param {Object} [options]
-@param {Object} [defaults]
 @returns {Object}
 ```
 
@@ -29,7 +28,7 @@ These defaults are intended for communication with APIs/services that accept and
 * gzip: true
 * timeout: 10000
 
-The defaults can be overwritten by providing your own `defaults` parameter object with the new values. Any additional values will be ignored, use the `options` object for your extended options.
+The defaults can be overwritten by providing your own properties in `options` with the new values. Any additional values will be ignored, use the `options` object for your extended options.
 
 ### Examples
 The basic use case will return true for json and gzip, as well as a timeout of 10 seconds
@@ -83,8 +82,6 @@ const request = require('request');
 const options = {
   method: 'get',
   url: 'https://api.yoursite.com/endpoint'
-};
-const defaults = {
   gzip: false,
   timeout: 20000
 };
@@ -93,7 +90,7 @@ function responseHandler (err, res, body) {
   // handle request response
 }
 
-request(requestOptions(options, defaults), responseHandler);
+request(requestOptions(options), responseHandler);
 
 // requestOptions => {
   method: 'get',
@@ -104,7 +101,7 @@ request(requestOptions(options, defaults), responseHandler);
 }
 ```
 
-Notice how the default json value is still present and left unchanged
+Notice how the default property `json` is still present and the value left unchanged
 
 ## Tests
 

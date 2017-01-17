@@ -1,6 +1,6 @@
 {
   "name": "request-options",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Default options object generator for the popular NodeJS package Request",
   "keywords": [
     "request",
